@@ -1,0 +1,8 @@
+resources:
+  volumes:
+    f1db_raw:
+      catalog_name: ${resources.schemas.bronze_schema.catalog_name}
+      schema_name: ${resources.schemas.bronze_schema.name}
+      name: f1db_raw
+      volume_type: MANAGED
+      comment: 'Landing zone for f1db_csv.zip CSV members'
