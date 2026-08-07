@@ -8,4 +8,4 @@ select
     , cast(time as string) as pitstop_time
     , duration
     , cast(milliseconds as bigint) as milliseconds
-from {{ ref('bronze_pit_stops') }}
+from {{ ref('ergast_pit_stops') }}

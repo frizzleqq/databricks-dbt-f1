@@ -7,4 +7,4 @@ select
     , cast(position as int) as race_position
     , time as lap_time
     , cast(milliseconds as bigint) as lap_milliseconds
-from {{ ref('bronze_lap_times') }}
+from {{ ref('ergast_lap_times') }}

@@ -9,4 +9,4 @@ select
     , cast(lat as double) as lat
     , cast(lng as double) as lng
     , url
-from {{ ref('bronze_circuits') }}
+from {{ ref('ergast_circuits') }}

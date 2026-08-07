@@ -19,4 +19,4 @@ select
     , fastestlaptime
     , cast(fastestlapspeed as double) as fastestlapspeed
     , statusid
-from {{ ref('bronze_results') }}
+from {{ ref('ergast_results') }}

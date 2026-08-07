@@ -19,4 +19,4 @@ select
     , cast(quali_time as string) as quali_time
     , cast(sprint_date as date) as sprint_date
     , cast(sprint_time as string) as sprint_time
-from {{ ref('bronze_races') }}
+from {{ ref('ergast_races') }}

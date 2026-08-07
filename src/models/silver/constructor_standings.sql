@@ -8,4 +8,4 @@ select
     , cast(position as int) as constructor_position
     , positiontext
     , cast(wins as int) as wins
-from {{ ref('bronze_constructor_standings') }}
+from {{ ref('ergast_constructor_standings') }}

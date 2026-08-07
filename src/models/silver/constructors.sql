@@ -6,4 +6,4 @@ select
     , name as constructor_name
     , nationality
     , url
-from {{ ref('bronze_constructors') }}
+from {{ ref('ergast_constructors') }}

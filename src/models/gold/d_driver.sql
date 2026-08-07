@@ -1,13 +1,13 @@
 with drivers as (
-    select * from {{ ref('silver_drivers') }}
+    select * from {{ ref('drivers') }}
 )
 
 , races as (
-    select * from {{ ref('silver_races') }}
+    select * from {{ ref('races') }}
 )
 
 , results as (
-    select * from {{ ref('silver_results') }}
+    select * from {{ ref('results') }}
 )
 
 , results_aggregated as (

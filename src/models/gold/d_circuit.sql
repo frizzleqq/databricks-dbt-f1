@@ -7,4 +7,4 @@ select
     , url as circuit_url
     , lat as circuit_latitude
     , lng as circuit_longitude
-from {{ ref('silver_circuits') }}
+from {{ ref('circuits') }}

@@ -1,5 +1,5 @@
 with pitstops as (
-    select * from {{ ref('silver_pit_stops') }}
+    select * from {{ ref('pit_stops') }}
 )
 
 , d_driver as (

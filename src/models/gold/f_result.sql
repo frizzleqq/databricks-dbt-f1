@@ -1,21 +1,21 @@
 with results as (
-    select * from {{ ref('silver_results') }}
+    select * from {{ ref('results') }}
 )
 
 , constructor_standings as (
-    select * from {{ ref('silver_constructor_standings') }}
+    select * from {{ ref('constructor_standings') }}
 )
 
 , driver_standings as (
-    select * from {{ ref('silver_driver_standings') }}
+    select * from {{ ref('driver_standings') }}
 )
 
 , qualifying as (
-    select * from {{ ref('silver_qualifying') }}
+    select * from {{ ref('qualifying') }}
 )
 
 , result_status as (
-    select * from {{ ref('silver_status') }}
+    select * from {{ ref('status') }}
 )
 
 , d_circuit as (

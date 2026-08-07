@@ -6,4 +6,4 @@ select
     , constructorid
     , points as constructor_points
     , status
-from {{ ref('bronze_constructor_results') }}
+from {{ ref('ergast_constructor_results') }}

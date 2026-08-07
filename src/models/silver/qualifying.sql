@@ -10,4 +10,4 @@ select
     , q1
     , q2
     , q3
-from {{ ref('bronze_qualifying') }}
+from {{ ref('ergast_qualifying') }}

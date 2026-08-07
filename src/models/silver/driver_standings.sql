@@ -8,4 +8,4 @@ select
     , cast(position as int) as driver_position
     , positiontext
     , cast(wins as int) as wins
-from {{ ref('bronze_driver_standings') }}
+from {{ ref('ergast_driver_standings') }}

@@ -1,9 +1,9 @@
 with circuits as (
-    select * from {{ ref('silver_circuits') }}
+    select * from {{ ref('circuits') }}
 )
 
 , races as (
-    select * from {{ ref('silver_races') }}
+    select * from {{ ref('races') }}
 )
 
 select

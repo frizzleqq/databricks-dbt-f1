@@ -3,4 +3,4 @@
 select
     statusid
     , status
-from {{ ref('bronze_status') }}
+from {{ ref('ergast_status') }}

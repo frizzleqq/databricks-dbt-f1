@@ -10,4 +10,4 @@ select
     , cast(dob as date) as dob
     , nationality
     , url
-from {{ ref('bronze_drivers') }}
+from {{ ref('ergast_drivers') }}

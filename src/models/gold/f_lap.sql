@@ -1,5 +1,5 @@
 with lap_times as (
-    select * from {{ ref('silver_lap_times') }}
+    select * from {{ ref('lap_times') }}
 )
 
 , d_driver as (
