@@ -6,14 +6,12 @@ config-version: 2
 profile: 'databricks_dbt_f1'
 
 # These configurations specify where dbt should look for different types of files.
-# For Databricks asset bundles, we put everything in src, as you may have
-# non-dbt resources in your project.
-model-paths: ["src/models"]
-analysis-paths: ["src/analyses"]
-test-paths: ["src/tests"]
-seed-paths: ["src/seeds"]
-macro-paths: ["src/macros"]
-snapshot-paths: ["src/snapshots"]
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
 
 clean-targets: # directories to be removed by `dbt clean`
   - "target"
