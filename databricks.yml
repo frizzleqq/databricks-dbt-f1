@@ -9,7 +9,7 @@ include:
   - resources/*.yml
 
 # The bronze/silver/gold schemas are shared, fixed names that dbt models and
-# the ingestion job reference literally (see models/*/,
+# the ingestion job reference literally (see src/models/*/,
 # src/ingestion/land_f1db.py) -- they are not per-developer sandboxes, so
 # skip the "[dev <user>]"-style prefix that `mode: development` would
 # otherwise apply to the UC schema resources in resources/*.schema.yml.
