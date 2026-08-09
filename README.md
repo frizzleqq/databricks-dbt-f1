@@ -11,11 +11,17 @@ This project is a showcase of a Databricks Automation Bundle that deploys a `dbt
 
 * uv: https://docs.astral.sh/uv/getting-started/installation/
 * Databricks CLI: https://docs.databricks.com/aws/en/dev-tools/cli/install
-* (Optional) Databricks AI skills for your coding agent (installable via Databricks CLI):
-  ```bash
-  databricks aitools install --scope project --skills "databricks-core,databricks-dabs,databricks-data-discovery,databricks-dbsql,databricks-docs,databricks-execution-compute,databricks-jobs,databricks-python-sdk,databricks-unity-catalog"
-  ```
-* (Optional) dbt Agent skills: https://github.com/dbt-labs/dbt-agent-skills
+* (Optional) AI Agents:
+  * Databricks AI skills:
+    ```bash
+    databricks aitools install --scope project --skills "databricks-core,databricks-dabs,databricks-docs,databricks-execution-compute,databricks-jobs,databricks-python-sdk,databricks-unity-catalog"
+    ```
+  * dbt Agent skills: https://github.com/dbt-labs/dbt-agent-skills
+  * dbt MCP Server: https://docs.getdbt.com/docs/dbt-ai/about-mcp
+    ```bash
+    uvx dbt-mcp
+    ```
+
 
 ### Getting started
 
