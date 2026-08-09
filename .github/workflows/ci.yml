@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  dbt-checks:
+    name: dbt checks (no warehouse connection)
+    runs-on: ubuntu-latest
+    env:
+      # dbt_profiles/profiles.yml renders these via env_var() while building the
+      # profile, even for offline commands like `dbt deps`/`dbt parse` below.
+      # The values are never used to open a real connection for these commands.
+      DBT_HOST: unused
+      DBT_ACCESS_TOKEN: unused
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --locked
+
+      - name: dbt deps
+        run: uv run dbt deps
+
+      - name: dbt parse (validates project, models, refs, and YAML schemas)
+        run: uv run dbt parse --profiles-dir dbt_profiles --target dev
+
+  bundle-validate:
+    name: databricks bundle validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Install Databricks CLI
+        uses: databricks/setup-cli@main
+
+      - name: databricks bundle validate
+        if: ${{ secrets.DATABRICKS_TOKEN != '' }}
+        env:
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+        run: databricks bundle validate --target dev
+
+      - name: Skip notice
+        if: ${{ secrets.DATABRICKS_TOKEN == '' }}
+        run: |
+          echo "::notice::Skipping databricks bundle validate - it needs a live workspace connection. Add a DATABRICKS_TOKEN repository secret to enable it."
