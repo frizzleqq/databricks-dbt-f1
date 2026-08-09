@@ -1,9 +1,9 @@
 {{ config(unique_key='constructorid') }}
 
-select
+SELECT
     constructorid
     , constructorref
-    , name as constructor_name
+    , name AS constructor_name
     , nationality
     , url
-from {{ ref('ergast_constructors') }}
+FROM {{ ref('ergast_constructors') }}

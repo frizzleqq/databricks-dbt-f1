@@ -54,6 +54,33 @@ uv run ruff format
 uv run pytest -v
 ```
 
+Ruff is configured in `pyproject.toml`.
+
+### SQL Checks
+
+SQL (dbt models and macros) is linted and formatted with
+[sqlfluff](https://docs.sqlfluff.com/) using the `databricks` dialect:
+
+```bash
+# Linting
+uv run sqlfluff lint src
+# Formatting (rewrites files in place)
+uv run sqlfluff fix src
+```
+
+The rules live in `.sqlfluff`: upper case keywords, functions and datatypes,
+lower case identifiers, 4-space indents, leading commas, and a 100-character
+line limit.
+
+sqlfluff uses the plain `jinja` templater, so linting needs neither a dbt profile
+nor a warehouse connection. `ref()`, `source()`, `config()` and friends come from
+sqlfluff's dbt builtins; macros from dbt packages are stubbed in `sqlfluff_libs/`
+(currently only `dbt_utils.generate_surrogate_key`). Add a stub there when a model
+starts using another package macro.
+
+Both checks run in CI alongside `dbt deps`/`dbt parse` in the `checks` job
+(`.github/workflows/ci.yml`).
+
 ### Local development with dbt
 
 ```

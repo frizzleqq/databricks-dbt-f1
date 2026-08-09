@@ -1,13 +1,13 @@
 {{ config(unique_key='driverid') }}
 
-select
+SELECT
     driverid
     , driverref
-    , cast(number as int) as driver_number
+    , CAST(number AS INT) AS driver_number
     , code
     , forename
     , surname
-    , cast(dob as date) as dob
+    , CAST(dob AS DATE) AS dob
     , nationality
     , url
-from {{ ref('ergast_drivers') }}
+FROM {{ ref('ergast_drivers') }}

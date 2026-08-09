@@ -1,12 +1,12 @@
 {{ config(unique_key='circuitid') }}
 
-select
+SELECT
     circuitid
     , circuitref
-    , name as circuit_name
+    , name AS circuit_name
     , location
     , country
-    , cast(lat as double) as lat
-    , cast(lng as double) as lng
+    , CAST(lat AS DOUBLE) AS lat
+    , CAST(lng AS DOUBLE) AS lng
     , url
-from {{ ref('ergast_circuits') }}
+FROM {{ ref('ergast_circuits') }}

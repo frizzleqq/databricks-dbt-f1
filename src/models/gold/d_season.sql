@@ -1,4 +1,4 @@
-select
+SELECT
     season
-    , url as season_url
-from {{ ref('seasons') }}
+    , url AS season_url
+FROM {{ ref('seasons') }}

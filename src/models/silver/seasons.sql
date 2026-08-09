@@ -1,6 +1,6 @@
 {{ config(unique_key='season') }}
 
-select
-    cast(year as int) as season
+SELECT
+    CAST(year AS INT) AS season
     , url
-from {{ ref('ergast_seasons') }}
+FROM {{ ref('ergast_seasons') }}

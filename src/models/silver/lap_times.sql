@@ -1,10 +1,10 @@
 {{ config(unique_key=['raceid', 'driverid', 'lap']) }}
 
-select
+SELECT
     raceid
     , driverid
-    , cast(lap as int) as lap
-    , cast(position as int) as race_position
-    , time as lap_time
-    , cast(milliseconds as bigint) as lap_milliseconds
-from {{ ref('ergast_lap_times') }}
+    , CAST(lap AS INT) AS lap
+    , CAST(position AS INT) AS race_position
+    , time AS lap_time
+    , CAST(milliseconds AS BIGINT) AS lap_milliseconds
+FROM {{ ref('ergast_lap_times') }}

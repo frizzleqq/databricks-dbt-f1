@@ -1,11 +1,11 @@
 {{ config(unique_key='driverstandingsid') }}
 
-select
+SELECT
     driverstandingsid
     , raceid
     , driverid
-    , cast(points as double) as points
-    , cast(position as int) as driver_position
+    , CAST(points AS DOUBLE) AS points
+    , CAST(position AS INT) AS driver_position
     , positiontext
-    , cast(wins as int) as wins
-from {{ ref('ergast_driver_standings') }}
+    , CAST(wins AS INT) AS wins
+FROM {{ ref('ergast_driver_standings') }}

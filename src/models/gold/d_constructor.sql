@@ -1,7 +1,7 @@
-select
-    constructorid as constructor_id
-    , constructorref as constructor_ref
+SELECT
+    constructorid AS constructor_id
+    , constructorref AS constructor_ref
     , constructor_name
-    , nationality as constructor_nationality
-    , url as constructor_url
-from {{ ref('constructors') }}
+    , nationality AS constructor_nationality
+    , url AS constructor_url
+FROM {{ ref('constructors') }}
