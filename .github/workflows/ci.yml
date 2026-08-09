@@ -23,6 +23,7 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
         with:
+          version: "0.12.3"
           enable-cache: true
 
       - name: Install dependencies
@@ -37,20 +38,22 @@ jobs:
   bundle-validate:
     name: databricks bundle validate
     runs-on: ubuntu-latest
+    env:
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+      DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
+      DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
+      DATABRICKS_BUNDLE_ENV: dev
     steps:
       - name: Checkout
         uses: actions/checkout@v7
 
       - name: Install Databricks CLI
         uses: databricks/setup-cli@main
+        with:
+          version: 1.11.0
 
-      - name: databricks bundle validate
-        if: ${{ secrets.DATABRICKS_TOKEN != '' }}
-        env:
-          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
-        run: databricks bundle validate --target dev
+      - name: Check Databricks CLI
+        run: databricks current-user me
 
-      - name: Skip notice
-        if: ${{ secrets.DATABRICKS_TOKEN == '' }}
-        run: |
-          echo "::notice::Skipping databricks bundle validate - it needs a live workspace connection. Add a DATABRICKS_TOKEN repository secret to enable it."
+      - name: Validate Databricks Bundle
+        run: databricks bundle validate
