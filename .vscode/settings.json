@@ -28,5 +28,14 @@
     "sqltools.autoConnectTo": "",
     "[jinja-sql]": {
         "editor.defaultFormatter": "innoverio.vscode-dbt-power-user"
-    }
+    },
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.codeActionsOnSave": {
+            "source.fixAll.ruff": "explicit",
+            "source.organizeImports.ruff": "explicit"
+        }
+    },
+    "sqlfluff.dialect": "databricks",
+    "sqlfluff.executablePath": "${workspaceFolder}/.venv/bin/sqlfluff"
 }

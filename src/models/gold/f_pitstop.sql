@@ -17,7 +17,8 @@ with pitstops as (
         , d_driver.driver_ref
         , pitstops.pitstop_number
         , pitstops.lap as lap_number
-        , to_timestamp(concat(cast(d_race.race_date as string), ' ', pitstops.pitstop_time)) as pitstop_timestamp
+        , to_timestamp(concat(cast(d_race.race_date as string), ' ', pitstops.pitstop_time))
+            as pitstop_timestamp
         , pitstops.duration as pitstop_duration
         , cast(pitstops.milliseconds as double) / 1000 as pitstop_seconds
     from pitstops

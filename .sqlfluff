@@ -1,0 +1,82 @@
+[sqlfluff]
+dialect = databricks
+templater = jinja
+max_line_length = 100
+
+# AM04: models select `*` from a CTE/`read_files()`, so the column count is
+#       intentionally unknown at lint time.
+# RF01: the jinja templater cannot resolve `ref()` to real relations, so column
+#       references cannot be validated.
+# ST06: `f_*` models put the surrogate key before the `*` on purpose.
+exclude_rules = AM04, RF01, ST06
+
+[sqlfluff:templater:jinja]
+apply_dbt_builtins = True
+library_path = sqlfluff_libs
+
+[sqlfluff:indentation]
+tab_space_size = 4
+indent_unit = space
+# CTEs sit flush with `with`, joins flush with `from`, bracket contents get a
+# single indent (matches the `read_files()` calls in the bronze models).
+indented_ctes = False
+indented_joins = False
+indented_using_on = True
+indented_on_contents = True
+implicit_indents = forbid
+
+# Leading commas: `col` on one line, `, col` on the next.
+[sqlfluff:layout:type:comma]
+line_position = leading
+spacing_before = touch
+
+[sqlfluff:rules:capitalisation.keywords]
+capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.identifiers]
+extended_capitalisation_policy = lower
+# `read_files()` option names are documented in camelCase (they are matched
+# case-insensitively by Spark).
+ignore_words = nullvalue, inferschema
+
+[sqlfluff:rules:capitalisation.functions]
+extended_capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.literals]
+capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.types]
+extended_capitalisation_policy = lower
+
+[sqlfluff:rules:aliasing.table]
+aliasing = explicit
+
+[sqlfluff:rules:aliasing.column]
+aliasing = explicit
+
+[sqlfluff:rules:aliasing.length]
+min_alias_length = 3
+
+[sqlfluff:rules:ambiguous.join]
+# `inner join` is spelled out, `left join` is not.
+fully_qualify_join_types = inner
+
+[sqlfluff:rules:structure.join_condition_order]
+# `join <table> on <table>.key = <earlier_table>.key`
+preferred_first_table_in_join_clause = later
+
+[sqlfluff:rules:convention.casting_style]
+preferred_type_casting_style = cast
+
+[sqlfluff:rules:convention.not_equal]
+preferred_not_equal_style = c_style
+
+[sqlfluff:rules:convention.quoted_literals]
+preferred_quoted_literal_style = single_quotes
+
+[sqlfluff:rules:convention.terminator]
+# Models are single statements without a trailing semi-colon.
+require_final_semicolon = False
+
+[sqlfluff:rules:references.special_chars]
+additional_allowed_characters = ""

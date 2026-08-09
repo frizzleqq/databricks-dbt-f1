@@ -23,8 +23,10 @@ select
     , races.fp3_date
     , to_timestamp(concat(cast(races.fp3_date as string), ' ', races.fp3_time)) as fp3_timestamp
     , races.quali_date as qualifying_date
-    , to_timestamp(concat(cast(races.quali_date as string), ' ', races.quali_time)) as qualifying_timestamp
+    , to_timestamp(concat(cast(races.quali_date as string), ' ', races.quali_time))
+        as qualifying_timestamp
     , races.sprint_date
-    , to_timestamp(concat(cast(races.sprint_date as string), ' ', races.sprint_time)) as sprint_timestamp
+    , to_timestamp(concat(cast(races.sprint_date as string), ' ', races.sprint_time))
+        as sprint_timestamp
 from races
 left join circuits on circuits.circuitid = races.circuitid

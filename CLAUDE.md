@@ -23,12 +23,18 @@ This repo deploys a Databricks Automation Bundle (DAB) with a dbt project.
 - Run Python code checks: `uv run ruff check --fix`
 - Check Python code formatting: `uv run ruff format`
 - Run Python tests: `uv run pytest -v`
+- Run SQL code checks: `uv run sqlfluff lint src`
+- Format SQL code: `uv run sqlfluff fix src`
 
 ## Code Style
 - Google Python Style Guide
 - Include type hints
 - Keep imports at top of the file
 - To import PySpark types/functions use `from pyspark.sql import functions as F, types as T`
+- Python is linted/formatted with `ruff` (configured in `pyproject.toml`)
+- SQL is linted/formatted with `sqlfluff` (configured in `.sqlfluff`, `databricks` dialect):
+  lowercase keywords/identifiers, 4-space indent, leading commas, max line length 100
+- sqlfluff uses the `jinja` templater; dbt package macros are stubbed in `sqlfluff_libs/`
 
 ## Data Structure
 - Catalogs: `lake_dev` (dev, default), `lake_test` (test), `lake_prod` (prod)
