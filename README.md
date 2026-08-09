@@ -78,7 +78,8 @@ sqlfluff's dbt builtins; macros from dbt packages are stubbed in `sqlfluff_libs/
 (currently only `dbt_utils.generate_surrogate_key`). Add a stub there when a model
 starts using another package macro.
 
-Both checks also run in CI (`.github/workflows/ci.yml`).
+Both checks run in CI alongside `dbt deps`/`dbt parse` in the `checks` job
+(`.github/workflows/ci.yml`).
 
 ### Local development with dbt
 
