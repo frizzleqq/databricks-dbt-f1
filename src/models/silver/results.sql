@@ -1,22 +1,22 @@
 {{ config(unique_key='resultid') }}
 
-select
+SELECT
     resultid
     , raceid
     , driverid
     , constructorid
-    , cast(number as int) as driver_number
-    , cast(grid as int) as grid
-    , cast(position as int) as result_position
+    , CAST(number AS INT) AS driver_number
+    , CAST(grid AS INT) AS grid
+    , CAST(position AS INT) AS result_position
     , positiontext
-    , cast(positionorder as int) as positionorder
-    , cast(points as double) as points
-    , cast(laps as int) as laps
+    , CAST(positionorder AS INT) AS positionorder
+    , CAST(points AS DOUBLE) AS points
+    , CAST(laps AS INT) AS laps
     , time
-    , cast(milliseconds as bigint) as milliseconds
+    , CAST(milliseconds AS BIGINT) AS milliseconds
     , fastestlap
-    , cast(rank as int) as fastestlap_rank
+    , CAST(rank AS INT) AS fastestlap_rank
     , fastestlaptime
-    , cast(fastestlapspeed as double) as fastestlapspeed
+    , CAST(fastestlapspeed AS DOUBLE) AS fastestlapspeed
     , statusid
-from {{ ref('ergast_results') }}
+FROM {{ ref('ergast_results') }}

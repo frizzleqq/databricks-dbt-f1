@@ -1,22 +1,22 @@
 {{ config(unique_key='raceid') }}
 
-select
+SELECT
     raceid
-    , cast(year as int) as season
-    , cast(round as int) as round
+    , CAST(year AS INT) AS season
+    , CAST(round AS INT) AS round
     , circuitid
-    , name as race_name
-    , cast(date as date) as race_date
-    , cast(time as string) as race_time
+    , name AS race_name
+    , CAST(date AS DATE) AS race_date
+    , CAST(time AS STRING) AS race_time
     , url
-    , cast(fp1_date as date) as fp1_date
-    , cast(fp1_time as string) as fp1_time
-    , cast(fp2_date as date) as fp2_date
-    , cast(fp2_time as string) as fp2_time
-    , cast(fp3_date as date) as fp3_date
-    , cast(fp3_time as string) as fp3_time
-    , cast(quali_date as date) as quali_date
-    , cast(quali_time as string) as quali_time
-    , cast(sprint_date as date) as sprint_date
-    , cast(sprint_time as string) as sprint_time
-from {{ ref('ergast_races') }}
+    , CAST(fp1_date AS DATE) AS fp1_date
+    , CAST(fp1_time AS STRING) AS fp1_time
+    , CAST(fp2_date AS DATE) AS fp2_date
+    , CAST(fp2_time AS STRING) AS fp2_time
+    , CAST(fp3_date AS DATE) AS fp3_date
+    , CAST(fp3_time AS STRING) AS fp3_time
+    , CAST(quali_date AS DATE) AS quali_date
+    , CAST(quali_time AS STRING) AS quali_time
+    , CAST(sprint_date AS DATE) AS sprint_date
+    , CAST(sprint_time AS STRING) AS sprint_time
+FROM {{ ref('ergast_races') }}

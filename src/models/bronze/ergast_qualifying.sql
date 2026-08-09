@@ -1,8 +1,8 @@
-select *
-from read_files(
+SELECT *
+FROM READ_FILES(
     '/Volumes/lake_dev/bronze/f1db_raw/qualifying.csv'
     , format => 'csv'
-    , header => true
+    , header => TRUE
     , nullValue => '\\N'
-    , inferSchema => false
+    , inferSchema => FALSE
 )

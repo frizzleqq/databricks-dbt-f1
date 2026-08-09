@@ -1,10 +1,10 @@
-select
-    circuitid as circuit_id
-    , circuitref as circuit_ref
+SELECT
+    circuitid AS circuit_id
+    , circuitref AS circuit_ref
     , circuit_name
-    , location as circuit_location
-    , country as circuit_country
-    , url as circuit_url
-    , lat as circuit_latitude
-    , lng as circuit_longitude
-from {{ ref('circuits') }}
+    , location AS circuit_location
+    , country AS circuit_country
+    , url AS circuit_url
+    , lat AS circuit_latitude
+    , lng AS circuit_longitude
+FROM {{ ref('circuits') }}

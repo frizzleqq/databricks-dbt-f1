@@ -1,38 +1,38 @@
-with lap_times as (
-    select * from {{ ref('lap_times') }}
+WITH lap_times AS (
+    SELECT * FROM {{ ref('lap_times') }}
 )
 
-, d_driver as (
-    select * from {{ ref('d_driver') }}
+, d_driver AS (
+    SELECT * FROM {{ ref('d_driver') }}
 )
 
-, d_race as (
-    select * from {{ ref('d_race') }}
+, d_race AS (
+    SELECT * FROM {{ ref('d_race') }}
 )
 
-, joined as (
-    select
+, joined AS (
+    SELECT
         d_race.race_ref
         , d_race.race_date
         , d_driver.driver_ref
-        , lap_times.lap as lap_number
+        , lap_times.lap AS lap_number
         , lap_times.race_position
         , lap_times.lap_time
         , lap_times.lap_milliseconds
-    from lap_times
-    left join d_driver
-        on d_driver.driver_id = lap_times.driverid
-    left join d_race
-        on d_race.race_id = lap_times.raceid
+    FROM lap_times
+    LEFT JOIN d_driver
+        ON d_driver.driver_id = lap_times.driverid
+    LEFT JOIN d_race
+        ON d_race.race_id = lap_times.raceid
 )
 
-select
+SELECT
     {{
         dbt_utils.generate_surrogate_key([
             'race_ref',
             'driver_ref',
             'lap_number',
         ])
-    }} as lap_ref
+    }} AS lap_ref
     , *
-from joined
+FROM joined

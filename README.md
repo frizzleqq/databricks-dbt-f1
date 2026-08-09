@@ -68,9 +68,9 @@ uv run sqlfluff lint src
 uv run sqlfluff fix src
 ```
 
-The rules live in `.sqlfluff` and follow the style already used in `src/models/`:
-lowercase keywords and identifiers, 4-space indents, leading commas, and a
-100-character line limit.
+The rules live in `.sqlfluff`: upper case keywords, functions and datatypes,
+lower case identifiers, 4-space indents, leading commas, and a 100-character
+line limit.
 
 sqlfluff uses the plain `jinja` templater, so linting needs neither a dbt profile
 nor a warehouse connection. `ref()`, `source()`, `config()` and friends come from

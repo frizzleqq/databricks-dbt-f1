@@ -1,11 +1,11 @@
 {{ config(unique_key='constructorstandingsid') }}
 
-select
+SELECT
     constructorstandingsid
     , raceid
     , constructorid
-    , cast(points as double) as points
-    , cast(position as int) as constructor_position
+    , CAST(points AS DOUBLE) AS points
+    , CAST(position AS INT) AS constructor_position
     , positiontext
-    , cast(wins as int) as wins
-from {{ ref('ergast_constructor_standings') }}
+    , CAST(wins AS INT) AS wins
+FROM {{ ref('ergast_constructor_standings') }}

@@ -33,7 +33,8 @@ This repo deploys a Databricks Automation Bundle (DAB) with a dbt project.
 - To import PySpark types/functions use `from pyspark.sql import functions as F, types as T`
 - Python is linted/formatted with `ruff` (configured in `pyproject.toml`)
 - SQL is linted/formatted with `sqlfluff` (configured in `.sqlfluff`, `databricks` dialect):
-  lowercase keywords/identifiers, 4-space indent, leading commas, max line length 100
+  upper case keywords/functions/datatypes, lower case identifiers, 4-space indent,
+  leading commas, max line length 100
 - sqlfluff uses the `jinja` templater; dbt package macros are stubbed in `sqlfluff_libs/`
 
 ## Data Structure

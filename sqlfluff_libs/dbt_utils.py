@@ -19,5 +19,5 @@ def generate_surrogate_key(field_list: list[str]) -> str:
     Returns:
         A SQL expression hashing the concatenation of the given fields.
     """
-    fields = ", ".join(f"coalesce(cast({field} as string), '')" for field in field_list)
-    return f"md5(concat_ws('-', {fields}))"
+    fields = ", ".join(f"COALESCE(CAST({field} AS STRING), '')" for field in field_list)
+    return f"MD5(CONCAT_WS('-', {fields}))"

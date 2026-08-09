@@ -1,40 +1,40 @@
-with pitstops as (
-    select * from {{ ref('pit_stops') }}
+WITH pitstops AS (
+    SELECT * FROM {{ ref('pit_stops') }}
 )
 
-, d_driver as (
-    select * from {{ ref('d_driver') }}
+, d_driver AS (
+    SELECT * FROM {{ ref('d_driver') }}
 )
 
-, d_race as (
-    select * from {{ ref('d_race') }}
+, d_race AS (
+    SELECT * FROM {{ ref('d_race') }}
 )
 
-, joined as (
-    select
+, joined AS (
+    SELECT
         d_race.race_ref
         , d_race.race_date
         , d_driver.driver_ref
         , pitstops.pitstop_number
-        , pitstops.lap as lap_number
-        , to_timestamp(concat(cast(d_race.race_date as string), ' ', pitstops.pitstop_time))
-            as pitstop_timestamp
-        , pitstops.duration as pitstop_duration
-        , cast(pitstops.milliseconds as double) / 1000 as pitstop_seconds
-    from pitstops
-    left join d_driver
-        on d_driver.driver_id = pitstops.driverid
-    left join d_race
-        on d_race.race_id = pitstops.raceid
+        , pitstops.lap AS lap_number
+        , TO_TIMESTAMP(CONCAT(CAST(d_race.race_date AS STRING), ' ', pitstops.pitstop_time))
+            AS pitstop_timestamp
+        , pitstops.duration AS pitstop_duration
+        , CAST(pitstops.milliseconds AS DOUBLE) / 1000 AS pitstop_seconds
+    FROM pitstops
+    LEFT JOIN d_driver
+        ON d_driver.driver_id = pitstops.driverid
+    LEFT JOIN d_race
+        ON d_race.race_id = pitstops.raceid
 )
 
-select
+SELECT
     {{
         dbt_utils.generate_surrogate_key([
             'race_ref',
             'driver_ref',
             'pitstop_number',
         ])
-    }} as pitstop_ref
+    }} AS pitstop_ref
     , *
-from joined
+FROM joined

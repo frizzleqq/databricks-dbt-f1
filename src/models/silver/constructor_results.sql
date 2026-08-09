@@ -1,9 +1,9 @@
 {{ config(unique_key='constructorresultsid') }}
 
-select
+SELECT
     constructorresultsid
     , raceid
     , constructorid
-    , points as constructor_points
+    , points AS constructor_points
     , status
-from {{ ref('ergast_constructor_results') }}
+FROM {{ ref('ergast_constructor_results') }}

@@ -1,13 +1,13 @@
 {{ config(unique_key='qualifyid') }}
 
-select
+SELECT
     qualifyid
     , raceid
     , driverid
     , constructorid
-    , cast(number as int) as driver_number
-    , cast(position as int) as qualifying_position
+    , CAST(number AS INT) AS driver_number
+    , CAST(position AS INT) AS qualifying_position
     , q1
     , q2
     , q3
-from {{ ref('ergast_qualifying') }}
+FROM {{ ref('ergast_qualifying') }}

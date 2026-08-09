@@ -1,32 +1,32 @@
-with circuits as (
-    select * from {{ ref('circuits') }}
+WITH circuits AS (
+    SELECT * FROM {{ ref('circuits') }}
 )
 
-, races as (
-    select * from {{ ref('races') }}
+, races AS (
+    SELECT * FROM {{ ref('races') }}
 )
 
-select
-    races.raceid as race_id
-    , concat(races.season, '-', races.round) as race_ref
-    , races.season as race_season
-    , races.round as race_round
-    , circuits.circuitref as circuit_ref
+SELECT
+    races.raceid AS race_id
+    , CONCAT(races.season, '-', races.round) AS race_ref
+    , races.season AS race_season
+    , races.round AS race_round
+    , circuits.circuitref AS circuit_ref
     , races.race_name
-    , races.url as race_url
+    , races.url AS race_url
     , races.race_date
-    , to_timestamp(concat(cast(races.race_date as string), ' ', races.race_time)) as race_timestamp
+    , TO_TIMESTAMP(CONCAT(CAST(races.race_date AS STRING), ' ', races.race_time)) AS race_timestamp
     , races.fp1_date
-    , to_timestamp(concat(cast(races.fp1_date as string), ' ', races.fp1_time)) as fp1_timestamp
+    , TO_TIMESTAMP(CONCAT(CAST(races.fp1_date AS STRING), ' ', races.fp1_time)) AS fp1_timestamp
     , races.fp2_date
-    , to_timestamp(concat(cast(races.fp2_date as string), ' ', races.fp2_time)) as fp2_timestamp
+    , TO_TIMESTAMP(CONCAT(CAST(races.fp2_date AS STRING), ' ', races.fp2_time)) AS fp2_timestamp
     , races.fp3_date
-    , to_timestamp(concat(cast(races.fp3_date as string), ' ', races.fp3_time)) as fp3_timestamp
-    , races.quali_date as qualifying_date
-    , to_timestamp(concat(cast(races.quali_date as string), ' ', races.quali_time))
-        as qualifying_timestamp
+    , TO_TIMESTAMP(CONCAT(CAST(races.fp3_date AS STRING), ' ', races.fp3_time)) AS fp3_timestamp
+    , races.quali_date AS qualifying_date
+    , TO_TIMESTAMP(CONCAT(CAST(races.quali_date AS STRING), ' ', races.quali_time))
+        AS qualifying_timestamp
     , races.sprint_date
-    , to_timestamp(concat(cast(races.sprint_date as string), ' ', races.sprint_time))
-        as sprint_timestamp
-from races
-left join circuits on circuits.circuitid = races.circuitid
+    , TO_TIMESTAMP(CONCAT(CAST(races.sprint_date AS STRING), ' ', races.sprint_time))
+        AS sprint_timestamp
+FROM races
+LEFT JOIN circuits ON circuits.circuitid = races.circuitid

@@ -1,6 +1,6 @@
 {{ config(unique_key='statusid') }}
 
-select
+SELECT
     statusid
     , status
-from {{ ref('ergast_status') }}
+FROM {{ ref('ergast_status') }}
