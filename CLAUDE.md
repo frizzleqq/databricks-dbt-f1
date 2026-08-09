@@ -1,4 +1,6 @@
-# CLAUDE.md
+This file provides guidance to AI assistants when working with code in this repository.
+
+# Project Overview
 
 This repo deploys a Databricks Automation Bundle (DAB) with a dbt project.
 
