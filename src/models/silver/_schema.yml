@@ -1,0 +1,283 @@
+version: 2
+
+models:
+  - name: circuits
+    description: >
+      Race circuits with location details, cleaned and typed from the
+      Ergast circuits data.
+    columns:
+      - name: circuitid
+        description: Unique identifier of the circuit.
+      - name: circuitref
+        description: Human-readable reference name of the circuit (e.g. "monza").
+      - name: circuit_name
+        description: Official name of the circuit.
+      - name: location
+        description: City or town where the circuit is located.
+      - name: country
+        description: Country where the circuit is located.
+      - name: lat
+        description: Latitude of the circuit.
+      - name: lng
+        description: Longitude of the circuit.
+      - name: url
+        description: Wikipedia URL of the circuit.
+
+  - name: constructors
+    description: >
+      Formula 1 constructors (teams), cleaned from the Ergast
+      constructors data.
+    columns:
+      - name: constructorid
+        description: Unique identifier of the constructor.
+      - name: constructorref
+        description: Human-readable reference name of the constructor (e.g. "ferrari").
+      - name: constructor_name
+        description: Official name of the constructor.
+      - name: nationality
+        description: Nationality of the constructor.
+      - name: url
+        description: Wikipedia URL of the constructor.
+
+  - name: constructor_results
+    description: >
+      Points scored by each constructor per race, from the Ergast
+      constructor results data.
+    columns:
+      - name: constructorresultsid
+        description: Unique identifier of the constructor race result.
+      - name: raceid
+        description: Identifier of the race.
+      - name: constructorid
+        description: Identifier of the constructor.
+      - name: constructor_points
+        description: Points scored by the constructor in the race.
+      - name: status
+        description: Result status remark (e.g. disqualified), usually null.
+
+  - name: constructor_standings
+    description: >
+      Constructor championship standings after each race, from the Ergast
+      constructor standings data.
+    columns:
+      - name: constructorstandingsid
+        description: Unique identifier of the constructor standings entry.
+      - name: raceid
+        description: Identifier of the race the standings are calculated after.
+      - name: constructorid
+        description: Identifier of the constructor.
+      - name: points
+        description: Cumulative championship points of the constructor.
+      - name: constructor_position
+        description: Position of the constructor in the championship standings.
+      - name: positiontext
+        description: Textual representation of the standings position.
+      - name: wins
+        description: Cumulative number of race wins of the constructor in the season.
+
+  - name: drivers
+    description: >
+      Formula 1 drivers with personal details, cleaned and typed from the
+      Ergast drivers data.
+    columns:
+      - name: driverid
+        description: Unique identifier of the driver.
+      - name: driverref
+        description: Human-readable reference name of the driver (e.g. "hamilton").
+      - name: driver_number
+        description: Permanent car number of the driver, if assigned.
+      - name: code
+        description: Three-letter driver code (e.g. "HAM").
+      - name: forename
+        description: First name of the driver.
+      - name: surname
+        description: Last name of the driver.
+      - name: dob
+        description: Date of birth of the driver.
+      - name: nationality
+        description: Nationality of the driver.
+      - name: url
+        description: Wikipedia URL of the driver.
+
+  - name: driver_standings
+    description: >
+      Driver championship standings after each race, from the Ergast
+      driver standings data.
+    columns:
+      - name: driverstandingsid
+        description: Unique identifier of the driver standings entry.
+      - name: raceid
+        description: Identifier of the race the standings are calculated after.
+      - name: driverid
+        description: Identifier of the driver.
+      - name: points
+        description: Cumulative championship points of the driver.
+      - name: driver_position
+        description: Position of the driver in the championship standings.
+      - name: positiontext
+        description: Textual representation of the standings position.
+      - name: wins
+        description: Cumulative number of race wins of the driver in the season.
+
+  - name: lap_times
+    description: >
+      Lap-by-lap timing per driver and race, typed from the Ergast
+      lap times data.
+    columns:
+      - name: raceid
+        description: Identifier of the race.
+      - name: driverid
+        description: Identifier of the driver.
+      - name: lap
+        description: Lap number within the race.
+      - name: race_position
+        description: Race position of the driver at the end of the lap.
+      - name: lap_time
+        description: Lap time formatted as text (e.g. "1:26.072").
+      - name: lap_milliseconds
+        description: Lap time in milliseconds.
+
+  - name: pit_stops
+    description: >
+      Pit stops per driver and race, typed from the Ergast pit stops data.
+    columns:
+      - name: raceid
+        description: Identifier of the race.
+      - name: driverid
+        description: Identifier of the driver.
+      - name: pitstop_number
+        description: Sequence number of the pit stop for the driver within the race.
+      - name: lap
+        description: Lap number on which the pit stop occurred.
+      - name: pitstop_time
+        description: Local time of day of the pit stop.
+      - name: duration
+        description: Duration of the pit stop formatted as text.
+      - name: milliseconds
+        description: Duration of the pit stop in milliseconds.
+
+  - name: qualifying
+    description: >
+      Qualifying session results per driver and race, typed from the
+      Ergast qualifying data.
+    columns:
+      - name: qualifyid
+        description: Unique identifier of the qualifying result.
+      - name: raceid
+        description: Identifier of the race.
+      - name: driverid
+        description: Identifier of the driver.
+      - name: constructorid
+        description: Identifier of the constructor.
+      - name: driver_number
+        description: Car number of the driver in the race.
+      - name: qualifying_position
+        description: Final qualifying position of the driver.
+      - name: q1
+        description: Best lap time in the Q1 session.
+      - name: q2
+        description: Best lap time in the Q2 session, if reached.
+      - name: q3
+        description: Best lap time in the Q3 session, if reached.
+
+  - name: races
+    description: >
+      Race calendar with session dates and times per season, typed from
+      the Ergast races data.
+    columns:
+      - name: raceid
+        description: Unique identifier of the race.
+      - name: season
+        description: Season (year) the race belongs to.
+      - name: round
+        description: Round number of the race within the season.
+      - name: circuitid
+        description: Identifier of the circuit the race is held at.
+      - name: race_name
+        description: Official name of the race (e.g. "Monaco Grand Prix").
+      - name: race_date
+        description: Date of the race.
+      - name: race_time
+        description: Start time of the race (UTC).
+      - name: url
+        description: Wikipedia URL of the race.
+      - name: fp1_date
+        description: Date of the first free practice session.
+      - name: fp1_time
+        description: Start time of the first free practice session (UTC).
+      - name: fp2_date
+        description: Date of the second free practice session.
+      - name: fp2_time
+        description: Start time of the second free practice session (UTC).
+      - name: fp3_date
+        description: Date of the third free practice session.
+      - name: fp3_time
+        description: Start time of the third free practice session (UTC).
+      - name: quali_date
+        description: Date of the qualifying session.
+      - name: quali_time
+        description: Start time of the qualifying session (UTC).
+      - name: sprint_date
+        description: Date of the sprint race, if held.
+      - name: sprint_time
+        description: Start time of the sprint race (UTC), if held.
+
+  - name: results
+    description: >
+      Race results per driver including grid position, finishing position,
+      points and fastest lap, typed from the Ergast results data.
+    columns:
+      - name: resultid
+        description: Unique identifier of the race result.
+      - name: raceid
+        description: Identifier of the race.
+      - name: driverid
+        description: Identifier of the driver.
+      - name: constructorid
+        description: Identifier of the constructor.
+      - name: driver_number
+        description: Car number of the driver in the race.
+      - name: grid
+        description: Starting grid position of the driver (0 = pit lane start).
+      - name: result_position
+        description: Official finishing position, null if the driver did not finish.
+      - name: positiontext
+        description: Textual finishing position (e.g. "R" retired, "D" disqualified).
+      - name: positionorder
+        description: Finishing position for ordering purposes, always populated.
+      - name: points
+        description: Championship points scored by the driver in the race.
+      - name: laps
+        description: Number of laps completed by the driver.
+      - name: time
+        description: Race time or gap to the winner formatted as text.
+      - name: milliseconds
+        description: Total race time in milliseconds, if finished.
+      - name: fastestlap
+        description: Lap number of the driver's fastest lap.
+      - name: fastestlap_rank
+        description: Rank of the driver's fastest lap compared to other drivers.
+      - name: fastestlaptime
+        description: Fastest lap time of the driver formatted as text.
+      - name: fastestlapspeed
+        description: Average speed of the fastest lap in km/h.
+      - name: statusid
+        description: Identifier of the finishing status.
+
+  - name: seasons
+    description: >
+      Formula 1 seasons, typed from the Ergast seasons data.
+    columns:
+      - name: season
+        description: Season year.
+      - name: url
+        description: Wikipedia URL of the season.
+
+  - name: status
+    description: >
+      Lookup of race finishing statuses from the Ergast status data.
+    columns:
+      - name: statusid
+        description: Unique identifier of the status.
+      - name: status
+        description: Finishing status description (e.g. "Finished", "Engine", "+1 Lap").
