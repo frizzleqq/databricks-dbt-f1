@@ -13,6 +13,8 @@ target/
 dbt_packages/
 dbt_modules/
 logs/
+# anonymous usage-tracking cookie dbt drops next to profiles.yml
+.user.yml
 
 # claude (databricks skills)
 .claude/skills/databricks-*

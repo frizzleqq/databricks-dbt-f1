@@ -13,6 +13,8 @@ exclude_rules = AM04, RF01, ST06
 [sqlfluff:templater:jinja]
 apply_dbt_builtins = True
 library_path = sqlfluff_libs
+# Make this project's own macros (src/macros) available when rendering models.
+load_macros_from_path = src/macros
 
 [sqlfluff:indentation]
 tab_space_size = 4
