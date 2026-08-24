@@ -19,11 +19,6 @@ clean-targets: # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
-# Unit tests verify model code, not data, so they only run during
-# development; prod jobs ('dbt build') skip them via parse-time disable.
-unit_tests:
-  +enabled: "{{ (target.name != 'prod') | as_bool }}"
-
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 models:
