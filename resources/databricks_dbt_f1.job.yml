@@ -29,7 +29,8 @@ resources:
             profiles_directory: dbt_profiles/
             commands:
               - 'dbt deps --target=${bundle.target}'
-              - 'dbt run --target=${bundle.target}'
+              # 'build' runs models plus data/unit tests in dependency order
+              - 'dbt build --target=${bundle.target}'
 
       environments:
         - environment_key: default

@@ -17,7 +17,7 @@ WITH pitstops AS (
         , d_driver.driver_ref
         , pitstops.pitstop_number
         , pitstops.lap AS lap_number
-        , TO_TIMESTAMP(CONCAT(CAST(d_race.race_date AS STRING), ' ', pitstops.pitstop_time))
+        , {{ date_time_to_timestamp('d_race.race_date', 'pitstops.pitstop_time') }}
             AS pitstop_timestamp
         , pitstops.duration AS pitstop_duration
         , CAST(pitstops.milliseconds AS DOUBLE) / 1000 AS pitstop_seconds

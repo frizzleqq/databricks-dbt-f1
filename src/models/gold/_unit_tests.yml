@@ -1,0 +1,69 @@
+version: 2
+
+# dbt unit tests can live in any .yml file under model-paths; they are kept
+# here instead of _schema.yml so table/column definitions stay separate from
+# test fixtures.
+unit_tests:
+  - name: unit_d_driver_career_aggregation
+    description: >
+      Career stats are aggregated across all results of a driver, and a
+      driver without any results gets 0 career races/points/laps instead
+      of NULL.
+    model: d_driver
+    given:
+      - input: ref('drivers')
+        rows:
+          - {driverid: 1, driverref: hamilton, forename: Lewis, surname: Hamilton}
+          - {driverid: 2, driverref: rookie, forename: Rocky, surname: Rookie}
+      - input: ref('races')
+        rows:
+          - {raceid: 10, race_date: 2021-03-28}
+          - {raceid: 11, race_date: 2021-04-18}
+      - input: ref('results')
+        rows:
+          - {resultid: 100, raceid: 10, driverid: 1, points: 25.0, laps: 56}
+          - {resultid: 101, raceid: 11, driverid: 1, points: 18.0, laps: 63}
+    expect:
+      rows:
+        - driver_ref: hamilton
+          driver_full_name: Lewis Hamilton
+          first_race_date: 2021-03-28
+          most_recent_race_date: 2021-04-18
+          career_races: 2
+          career_points: 43.0
+          career_laps: 119
+        - driver_ref: rookie
+          driver_full_name: Rocky Rookie
+          first_race_date: null
+          most_recent_race_date: null
+          career_races: 0
+          career_points: 0.0
+          career_laps: 0
+
+  - name: unit_d_race_session_timestamps
+    description: >
+      Session date and time-of-day columns are combined into timestamps
+      (date_time_to_timestamp macro); a session without a time yields a
+      NULL timestamp.
+    model: d_race
+    given:
+      - input: ref('circuits')
+        rows:
+          - {circuitid: 6, circuitref: monaco}
+      - input: ref('races')
+        rows:
+          - raceid: 10
+            season: 2021
+            round: 5
+            circuitid: 6
+            race_date: 2021-05-23
+            race_time: '13:00:00'
+            quali_date: 2021-05-22
+            quali_time: null
+    expect:
+      rows:
+        - race_ref: '2021-5'
+          circuit_ref: monaco
+          race_timestamp: 2021-05-23 13:00:00
+          qualifying_timestamp: null
+          sprint_timestamp: null
