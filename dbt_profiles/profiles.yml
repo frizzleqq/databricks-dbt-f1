@@ -23,6 +23,24 @@ databricks_dbt_f1:
       host: "{{ env_var('DBT_HOST') }}"
       token: "{{ env_var('DBT_ACCESS_TOKEN') }}"
 
+    # CI target (GitHub Actions): authenticates as the CI service principal
+    # via OAuth M2M. Only used to execute the singular macro tests
+    # (test_type:singular), which are pure SELECTs over literals -- no
+    # tables, schemas, or other entities are created. Catalog/schema are
+    # just the session defaults.
+    ci:
+      type: databricks
+      method: http
+      catalog: lake_dev
+      schema: default
+
+      http_path: /sql/1.0/warehouses/c31436beb8eee93c
+
+      host: "{{ env_var('DBT_HOST') }}"
+      auth_type: oauth
+      client_id: "{{ env_var('DBT_CLIENT_ID', '') }}"
+      client_secret: "{{ env_var('DBT_CLIENT_SECRET', '') }}"
+
     # The production target when deployed with the Databricks CLI
     prod:
       type: databricks
