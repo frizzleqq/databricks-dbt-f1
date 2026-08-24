@@ -41,16 +41,19 @@ databricks_dbt_f1:
       client_id: "{{ env_var('DBT_CLIENT_ID', '') }}"
       client_secret: "{{ env_var('DBT_CLIENT_SECRET', '') }}"
 
-    # The production target when deployed with the Databricks CLI
+    # The production target: authenticates as a service principal via
+    # OAuth M2M. The prod job/workflow providing DBT_CLIENT_ID and
+    # DBT_CLIENT_SECRET does not exist yet.
     prod:
       type: databricks
       method: http
-      catalog: lake_dev
+      catalog: lake_prod
       schema: default
 
       http_path: /sql/1.0/warehouses/c31436beb8eee93c
 
-      # The workspace host / token are provided by Databricks
       # see databricks.yml for the workspace host used for 'prod'
       host: "{{ env_var('DBT_HOST') }}"
-      token: "{{ env_var('DBT_ACCESS_TOKEN') }}"
+      auth_type: oauth
+      client_id: "{{ env_var('DBT_CLIENT_ID', '') }}"
+      client_secret: "{{ env_var('DBT_CLIENT_SECRET', '') }}"
