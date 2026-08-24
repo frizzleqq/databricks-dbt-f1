@@ -8,7 +8,7 @@ WITH circuits AS (
 
 SELECT
     races.raceid AS race_id
-    , CONCAT(races.season, '-', races.round) AS race_ref
+    , {{ generate_race_ref('races.season', 'races.round') }} AS race_ref
     , races.season AS race_season
     , races.round AS race_round
     , circuits.circuitref AS circuit_ref
