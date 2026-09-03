@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: d_race
+    description: >
+      Race dimension (SCD1/current). One row per race with the circuit,
+      race date and timestamps of all sessions, based on the silver races
+      and circuits models.
+    columns:
+      - name: race_id
+        description: Unique identifier of the race.
+      - name: race_ref
+        description: Business key of the race in the form "<season>-<round>" (e.g. "2021-5").
+        data_tests:
+          - unique
+          - not_null
+      - name: race_season
+        description: Season (year) the race belongs to.
+      - name: race_round
+        description: Round number of the race within the season.
+      - name: circuit_ref
+        description: Human-readable reference name of the circuit the race is held at.
+      - name: race_name
+        description: Official name of the race (e.g. "Monaco Grand Prix").
+      - name: race_url
+        description: Wikipedia URL of the race.
+      - name: race_date
+        description: Date of the race.
+        data_tests:
+          - not_null
+      - name: race_timestamp
+        description: Start timestamp of the race (UTC), null if the start time is unknown.
+      - name: fp1_date
+        description: Date of the first free practice session.
+      - name: fp1_timestamp
+        description: Start timestamp of the first free practice session (UTC), null if unknown.
+      - name: fp2_date
+        description: Date of the second free practice session.
+      - name: fp2_timestamp
+        description: Start timestamp of the second free practice session (UTC), null if unknown.
+      - name: fp3_date
+        description: Date of the third free practice session.
+      - name: fp3_timestamp
+        description: Start timestamp of the third free practice session (UTC), null if unknown.
+      - name: qualifying_date
+        description: Date of the qualifying session.
+      - name: qualifying_timestamp
+        description: Start timestamp of the qualifying session (UTC), null if unknown.
+      - name: sprint_date
+        description: Date of the sprint race, if held.
+      - name: sprint_timestamp
+        description: Start timestamp of the sprint race (UTC), null if not held or unknown.

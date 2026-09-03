@@ -1,0 +1,101 @@
+version: 2
+
+models:
+  - name: f_result
+    description: >
+      Race result fact. One row per driver and race with the race result,
+      qualifying result and the driver and constructor championship
+      standings after the race. Based on the silver results, qualifying,
+      standings and status models joined to the gold dimensions.
+    columns:
+      - name: result_ref
+        description: Surrogate key of the result, hashed from race_ref and driver_ref.
+        data_tests:
+          - unique:
+              config:
+                where: "race_date >= '2000-01-01'"
+          - not_null
+      - name: race_date
+        description: Date of the race.
+      - name: race_ref
+        description: Business key of the race in the form "<season>-<round>".
+        data_tests:
+          - not_null
+      - name: circuit_ref
+        description: Human-readable reference name of the circuit the race is held at.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('d_circuit')
+                field: circuit_ref
+      - name: constructor_ref
+        description: Human-readable reference name of the constructor the driver raced for.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('d_constructor')
+                field: constructor_ref
+      - name: driver_ref
+        description: Human-readable reference name of the driver.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('d_driver')
+                field: driver_ref
+      - name: driver_number
+        description: Car number of the driver in the race.
+      - name: starting_position
+        description: Starting grid position of the driver (0 = pit lane start).
+      - name: result_position
+        description: Official finishing position, null if the driver did not finish.
+      - name: result_position_text
+        description: Textual finishing position (e.g. "R" retired, "D" disqualified).
+      - name: result_position_order
+        description: Finishing position for ordering purposes, always populated.
+      - name: result_points
+        description: Championship points scored by the driver in the race.
+      - name: result_status
+        description: Finishing status description (e.g. "Finished", "Engine", "+1 Lap").
+      - name: laps_completed
+        description: Number of laps completed by the driver.
+      - name: finishing_time
+        description: Race time or gap to the winner formatted as text.
+      - name: finishing_time_milliseconds
+        description: Total race time in milliseconds, if finished.
+      - name: has_fastest_lap
+        description: True if the driver set the fastest lap of the race, false otherwise.
+      - name: fastest_lap_number
+        description: Lap number of the driver's fastest lap.
+      - name: fastest_lap_position
+        description: Rank of the driver's fastest lap compared to other drivers.
+      - name: fastest_lap_time
+        description: Fastest lap time of the driver formatted as text.
+      - name: fastest_lap_avg_speed
+        description: Average speed of the fastest lap in km/h.
+      - name: qualifying_position
+        description: Final qualifying position of the driver, null if no qualifying data exists.
+      - name: qualifying1_lap_time
+        description: Best lap time in the Q1 session.
+      - name: qualifying2_lap_time
+        description: Best lap time in the Q2 session, if reached.
+      - name: qualifying3_lap_time
+        description: Best lap time in the Q3 session, if reached.
+      - name: driver_season_points
+        description: Cumulative championship points of the driver after the race.
+      - name: driver_season_position
+        description: Position of the driver in the championship standings after the race.
+      - name: driver_season_position_text
+        description: Textual representation of the driver's standings position after the race.
+      - name: driver_season_wins
+        description: Cumulative number of race wins of the driver in the season after the race.
+      - name: constructor_season_points
+        description: Cumulative championship points of the constructor after the race.
+      - name: constructor_season_position
+        description: Position of the constructor in the championship standings after the race.
+      - name: constructor_season_position_text
+        description: Textual representation of the constructor's standings position after the race.
+      - name: constructor_season_wins
+        description: Cumulative number of race wins of the constructor in the season after the race.

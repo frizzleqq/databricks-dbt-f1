@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: constructor_standings
+    description: >
+      Constructor championship standings after each race, from the Ergast
+      constructor standings data.
+    columns:
+      - name: constructorstandingsid
+        description: Unique identifier of the constructor standings entry.
+      - name: raceid
+        description: Identifier of the race the standings are calculated after.
+      - name: constructorid
+        description: Identifier of the constructor.
+      - name: points
+        description: Cumulative championship points of the constructor.
+      - name: constructor_position
+        description: Position of the constructor in the championship standings.
+      - name: positiontext
+        description: Textual representation of the standings position.
+      - name: wins
+        description: Cumulative number of race wins of the constructor in the season.

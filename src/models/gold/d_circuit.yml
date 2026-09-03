@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: d_circuit
+    description: >
+      Circuit dimension (SCD1/current). One row per race circuit with
+      location details, based on the silver circuits model.
+    columns:
+      - name: circuit_id
+        description: Unique identifier of the circuit.
+      - name: circuit_ref
+        description: Human-readable reference name of the circuit (e.g. "monza"). Business key.
+        data_tests:
+          - unique
+          - not_null
+      - name: circuit_name
+        description: Official name of the circuit.
+      - name: circuit_location
+        description: City or town where the circuit is located.
+      - name: circuit_country
+        description: Country where the circuit is located.
+      - name: circuit_url
+        description: Wikipedia URL of the circuit.
+      - name: circuit_latitude
+        description: Latitude of the circuit.
+      - name: circuit_longitude
+        description: Longitude of the circuit.

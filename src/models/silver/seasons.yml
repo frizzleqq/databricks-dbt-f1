@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: seasons
+    description: >
+      Formula 1 seasons, typed from the Ergast seasons data.
+    columns:
+      - name: season
+        description: Season year.
+      - name: url
+        description: Wikipedia URL of the season.

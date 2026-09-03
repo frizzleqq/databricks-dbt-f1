@@ -30,6 +30,12 @@ models:
       +materialized: incremental
       +incremental_strategy: merge
       +schema: silver
+      +persist_docs:
+        relation: true
+        columns: true
     gold:
       +materialized: table
       +schema: gold
+      +persist_docs:
+        relation: true
+        columns: true

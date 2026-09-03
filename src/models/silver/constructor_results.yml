@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: constructor_results
+    description: >
+      Points scored by each constructor per race, from the Ergast
+      constructor results data.
+    columns:
+      - name: constructorresultsid
+        description: Unique identifier of the constructor race result.
+      - name: raceid
+        description: Identifier of the race.
+      - name: constructorid
+        description: Identifier of the constructor.
+      - name: constructor_points
+        description: Points scored by the constructor in the race.
+      - name: status
+        description: Result status remark (e.g. disqualified), usually null.

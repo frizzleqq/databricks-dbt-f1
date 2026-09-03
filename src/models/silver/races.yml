@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: races
+    description: >
+      Race calendar with session dates and times per season, typed from
+      the Ergast races data.
+    columns:
+      - name: raceid
+        description: Unique identifier of the race.
+      - name: season
+        description: Season (year) the race belongs to.
+      - name: round
+        description: Round number of the race within the season.
+      - name: circuitid
+        description: Identifier of the circuit the race is held at.
+      - name: race_name
+        description: Official name of the race (e.g. "Monaco Grand Prix").
+      - name: race_date
+        description: Date of the race.
+      - name: race_time
+        description: Start time of the race (UTC).
+      - name: url
+        description: Wikipedia URL of the race.
+      - name: fp1_date
+        description: Date of the first free practice session.
+      - name: fp1_time
+        description: Start time of the first free practice session (UTC).
+      - name: fp2_date
+        description: Date of the second free practice session.
+      - name: fp2_time
+        description: Start time of the second free practice session (UTC).
+      - name: fp3_date
+        description: Date of the third free practice session.
+      - name: fp3_time
+        description: Start time of the third free practice session (UTC).
+      - name: quali_date
+        description: Date of the qualifying session.
+      - name: quali_time
+        description: Start time of the qualifying session (UTC).
+      - name: sprint_date
+        description: Date of the sprint race, if held.
+      - name: sprint_time
+        description: Start time of the sprint race (UTC), if held.

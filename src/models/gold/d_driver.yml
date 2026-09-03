@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: d_driver
+    description: >
+      Driver dimension (SCD1/current). One row per Formula 1 driver with
+      personal details and career aggregates computed from race results.
+    columns:
+      - name: driver_id
+        description: Unique identifier of the driver.
+      - name: driver_ref
+        description: Human-readable reference name of the driver (e.g. "hamilton"). Business key.
+        data_tests:
+          - unique
+          - not_null
+      - name: driver_second_name
+        description: Last name of the driver.
+      - name: driver_first_name
+        description: First name of the driver.
+      - name: driver_full_name
+        description: First and last name of the driver (e.g. "Lewis Hamilton").
+      - name: driver_code
+        description: Three-letter driver code (e.g. "HAM").
+      - name: driver_number
+        description: Permanent car number of the driver, if assigned.
+      - name: driver_date_of_birth
+        description: Date of birth of the driver.
+      - name: driver_nationality
+        description: Nationality of the driver.
+      - name: driver_url
+        description: Wikipedia URL of the driver.
+      - name: first_race_date
+        description: Date of the driver's first race, null if the driver has no results.
+      - name: most_recent_race_date
+        description: Date of the driver's most recent race, null if the driver has no results.
+      - name: career_races
+        description: Number of distinct races the driver has a result for, 0 if none.
+      - name: career_points
+        description: Total championship points scored by the driver across all races, 0 if none.
+      - name: career_laps
+        description: Total number of laps completed by the driver across all races, 0 if none.
