@@ -20,9 +20,7 @@ databricks_dbt_f1:
 
       # The workspace host / token are provided by Databricks
       # see databricks.yml for the workspace host used for 'dev'
-      # The scheme is stripped because the adapter's SPOG discovery probe
-      # builds "https://<host>/..." and chokes on an already-prefixed host.
-      host: "{{ env_var('DBT_HOST') | replace('https://', '') }}"
+      host: "{{ env_var('DBT_HOST') }}"
       token: "{{ env_var('DBT_ACCESS_TOKEN') }}"
 
     # CI target (GitHub Actions): authenticates as the CI service principal
@@ -38,9 +36,7 @@ databricks_dbt_f1:
 
       http_path: /sql/1.0/warehouses/c31436beb8eee93c
 
-      # Scheme stripped: the CI secret DATABRICKS_HOST includes "https://"
-      # (the Databricks CLI needs it), but the adapter expects a bare host.
-      host: "{{ env_var('DBT_HOST') | replace('https://', '') }}"
+      host: "{{ env_var('DBT_HOST') }}"
       auth_type: oauth
       client_id: "{{ env_var('DBT_CLIENT_ID', '') }}"
       client_secret: "{{ env_var('DBT_CLIENT_SECRET', '') }}"
@@ -57,7 +53,7 @@ databricks_dbt_f1:
       http_path: /sql/1.0/warehouses/c31436beb8eee93c
 
       # see databricks.yml for the workspace host used for 'prod'
-      host: "{{ env_var('DBT_HOST') | replace('https://', '') }}"
+      host: "{{ env_var('DBT_HOST') }}"
       auth_type: oauth
       client_id: "{{ env_var('DBT_CLIENT_ID', '') }}"
       client_secret: "{{ env_var('DBT_CLIENT_SECRET', '') }}"
