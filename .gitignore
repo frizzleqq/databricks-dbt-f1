@@ -16,5 +16,6 @@ logs/
 # anonymous usage-tracking cookie dbt drops next to profiles.yml
 .user.yml
 
-# claude (databricks skills)
+# claude (databricks skills, per-developer local settings)
 .claude/skills/databricks-*
+.claude/settings.local.json

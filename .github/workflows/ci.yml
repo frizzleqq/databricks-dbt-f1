@@ -13,10 +13,10 @@ jobs:
     env:
       # dbt_profiles/profiles.yml renders these via env_var() while building the
       # profile, even for offline commands like `dbt deps`/`dbt parse` below.
-      # The values are never used to open a real connection for these commands;
-      # only the final `dbt test` step connects, with real step-level values.
-      DBT_HOST: unused
-      DBT_ACCESS_TOKEN: unused
+      # Only the final `dbt test` step actually opens a connection.
+      DBT_HOST: ${{ secrets.DATABRICKS_HOST }}
+      DBT_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
+      DBT_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -55,17 +55,10 @@ jobs:
       - name: dbt parse (validates project, models, refs, and YAML schemas)
         id: dbt-parse
         if: ${{ !cancelled() && steps.dbt-deps.outcome == 'success' }}
-        run: uv run dbt parse --profiles-dir dbt_profiles --target dev
+        run: uv run dbt parse --profiles-dir dbt_profiles --target ci
 
       - name: dbt test (macro singular tests on a SQL warehouse)
-        # The singular tests run SELECTs over literal values through the CI
-        # service principal: they need Databricks compute but neither read
-        # nor create any tables/schemas.
         if: ${{ !cancelled() && steps.dbt-parse.outcome == 'success' }}
-        env:
-          DBT_HOST: ${{ secrets.DATABRICKS_HOST }}
-          DBT_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
-          DBT_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
         run: uv run dbt test --select "test_type:singular" --profiles-dir dbt_profiles --target ci
 
   bundle-validate:
