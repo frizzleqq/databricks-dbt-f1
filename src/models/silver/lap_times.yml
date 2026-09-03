@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: lap_times
+    description: >
+      Lap-by-lap timing per driver and race, typed from the Ergast
+      lap times data.
+    columns:
+      - name: raceid
+        description: Identifier of the race.
+      - name: driverid
+        description: Identifier of the driver.
+      - name: lap
+        description: Lap number within the race.
+      - name: race_position
+        description: Race position of the driver at the end of the lap.
+      - name: lap_time
+        description: Lap time formatted as text (e.g. "1:26.072").
+      - name: lap_milliseconds
+        description: Lap time in milliseconds.

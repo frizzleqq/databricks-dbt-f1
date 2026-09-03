@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: pit_stops
+    description: >
+      Pit stops per driver and race, typed from the Ergast pit stops data.
+    columns:
+      - name: raceid
+        description: Identifier of the race.
+      - name: driverid
+        description: Identifier of the driver.
+      - name: pitstop_number
+        description: Sequence number of the pit stop for the driver within the race.
+      - name: lap
+        description: Lap number on which the pit stop occurred.
+      - name: pitstop_time
+        description: Local time of day of the pit stop.
+      - name: duration
+        description: Duration of the pit stop formatted as text.
+      - name: milliseconds
+        description: Duration of the pit stop in milliseconds.

@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: status
+    description: >
+      Lookup of race finishing statuses from the Ergast status data.
+    columns:
+      - name: statusid
+        description: Unique identifier of the status.
+      - name: status
+        description: Finishing status description (e.g. "Finished", "Engine", "+1 Lap").

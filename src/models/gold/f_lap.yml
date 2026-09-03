@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: f_lap
+    description: >
+      Lap fact. One row per driver, race and lap with lap time and race
+      position, based on the silver lap times model joined to the race and
+      driver dimensions.
+    columns:
+      - name: lap_ref
+        description: Surrogate key of the lap, hashed from race_ref, driver_ref and lap_number.
+        data_tests:
+          - unique
+          - not_null
+      - name: race_ref
+        description: Business key of the race in the form "<season>-<round>".
+        data_tests:
+          - not_null
+      - name: race_date
+        description: Date of the race.
+      - name: driver_ref
+        description: Human-readable reference name of the driver.
+        data_tests:
+          - not_null
+      - name: lap_number
+        description: Lap number within the race.
+        data_tests:
+          - not_null
+      - name: race_position
+        description: Race position of the driver at the end of the lap.
+      - name: lap_time
+        description: Lap time formatted as text (e.g. "1:26.072").
+      - name: lap_milliseconds
+        description: Lap time in milliseconds.

@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: constructors
+    description: >
+      Formula 1 constructors (teams), cleaned from the Ergast
+      constructors data.
+    columns:
+      - name: constructorid
+        description: Unique identifier of the constructor.
+      - name: constructorref
+        description: Human-readable reference name of the constructor (e.g. "ferrari").
+      - name: constructor_name
+        description: Official name of the constructor.
+      - name: nationality
+        description: Nationality of the constructor.
+      - name: url
+        description: Wikipedia URL of the constructor.

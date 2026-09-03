@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: d_season
+    description: >
+      Season dimension (SCD1/current). One row per Formula 1 season, based
+      on the silver seasons model.
+    columns:
+      - name: season
+        description: Season year. Business key.
+        data_tests:
+          - unique
+          - not_null
+      - name: season_url
+        description: Wikipedia URL of the season.

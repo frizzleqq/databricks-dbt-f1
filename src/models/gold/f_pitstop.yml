@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: f_pitstop
+    description: >
+      Pit stop fact. One row per driver, race and pit stop with timing and
+      duration, based on the silver pit stops model joined to the race and
+      driver dimensions.
+    columns:
+      - name: pitstop_ref
+        description: Surrogate key of the pit stop, hashed from race_ref, driver_ref and pitstop_number.
+        data_tests:
+          - unique
+          - not_null
+      - name: race_ref
+        description: Business key of the race in the form "<season>-<round>".
+        data_tests:
+          - not_null
+      - name: race_date
+        description: Date of the race.
+      - name: driver_ref
+        description: Human-readable reference name of the driver.
+        data_tests:
+          - not_null
+      - name: pitstop_number
+        description: Sequence number of the pit stop for the driver within the race.
+        data_tests:
+          - not_null
+      - name: lap_number
+        description: Lap number on which the pit stop occurred.
+      - name: pitstop_timestamp
+        description: Timestamp of the pit stop, combining the race date with the local time of day.
+      - name: pitstop_duration
+        description: Duration of the pit stop formatted as text.
+      - name: pitstop_seconds
+        description: Duration of the pit stop in seconds.

@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: d_constructor
+    description: >
+      Constructor (team) dimension (SCD1/current). One row per Formula 1
+      constructor, based on the silver constructors model.
+    columns:
+      - name: constructor_id
+        description: Unique identifier of the constructor.
+      - name: constructor_ref
+        description: Human-readable reference name of the constructor (e.g. "ferrari"). Business key.
+        data_tests:
+          - unique
+          - not_null
+      - name: constructor_name
+        description: Official name of the constructor.
+      - name: constructor_nationality
+        description: Nationality of the constructor.
+      - name: constructor_url
+        description: Wikipedia URL of the constructor.

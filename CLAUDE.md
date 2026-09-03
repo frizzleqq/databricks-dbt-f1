@@ -11,6 +11,7 @@ This repo deploys a Databricks Automation Bundle (DAB) with a dbt project.
   - `src/ingestion/`: Python Code for data ingestion.
   - `src/macros/`: dbt Macros
   - `src/models/`: dbt Models
+    - One YAML file per model, named like the model (e.g. `d_driver.yml` next to `d_driver.sql`)
 - `resources/`: DAB Resource configurations (jobs, pipelines, UC schemas, volumes, alerts)
 - `tests/`: Unit tests for the shared Python code.
 

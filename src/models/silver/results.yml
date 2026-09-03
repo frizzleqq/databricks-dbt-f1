@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: results
+    description: >
+      Race results per driver including grid position, finishing position,
+      points and fastest lap, typed from the Ergast results data.
+    columns:
+      - name: resultid
+        description: Unique identifier of the race result.
+      - name: raceid
+        description: Identifier of the race.
+      - name: driverid
+        description: Identifier of the driver.
+      - name: constructorid
+        description: Identifier of the constructor.
+      - name: driver_number
+        description: Car number of the driver in the race.
+      - name: grid
+        description: Starting grid position of the driver (0 = pit lane start).
+      - name: result_position
+        description: Official finishing position, null if the driver did not finish.
+      - name: positiontext
+        description: Textual finishing position (e.g. "R" retired, "D" disqualified).
+      - name: positionorder
+        description: Finishing position for ordering purposes, always populated.
+      - name: points
+        description: Championship points scored by the driver in the race.
+      - name: laps
+        description: Number of laps completed by the driver.
+      - name: time
+        description: Race time or gap to the winner formatted as text.
+      - name: milliseconds
+        description: Total race time in milliseconds, if finished.
+      - name: fastestlap
+        description: Lap number of the driver's fastest lap.
+      - name: fastestlap_rank
+        description: Rank of the driver's fastest lap compared to other drivers.
+      - name: fastestlaptime
+        description: Fastest lap time of the driver formatted as text.
+      - name: fastestlapspeed
+        description: Average speed of the fastest lap in km/h.
+      - name: statusid
+        description: Identifier of the finishing status.

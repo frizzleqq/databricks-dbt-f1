@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: driver_standings
+    description: >
+      Driver championship standings after each race, from the Ergast
+      driver standings data.
+    columns:
+      - name: driverstandingsid
+        description: Unique identifier of the driver standings entry.
+      - name: raceid
+        description: Identifier of the race the standings are calculated after.
+      - name: driverid
+        description: Identifier of the driver.
+      - name: points
+        description: Cumulative championship points of the driver.
+      - name: driver_position
+        description: Position of the driver in the championship standings.
+      - name: positiontext
+        description: Textual representation of the standings position.
+      - name: wins
+        description: Cumulative number of race wins of the driver in the season.

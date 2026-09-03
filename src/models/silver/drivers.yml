@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: drivers
+    description: >
+      Formula 1 drivers with personal details, cleaned and typed from the
+      Ergast drivers data.
+    columns:
+      - name: driverid
+        description: Unique identifier of the driver.
+      - name: driverref
+        description: Human-readable reference name of the driver (e.g. "hamilton").
+      - name: driver_number
+        description: Permanent car number of the driver, if assigned.
+      - name: code
+        description: Three-letter driver code (e.g. "HAM").
+      - name: forename
+        description: First name of the driver.
+      - name: surname
+        description: Last name of the driver.
+      - name: dob
+        description: Date of birth of the driver.
+      - name: nationality
+        description: Nationality of the driver.
+      - name: url
+        description: Wikipedia URL of the driver.

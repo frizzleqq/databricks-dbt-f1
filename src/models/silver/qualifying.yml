@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: qualifying
+    description: >
+      Qualifying session results per driver and race, typed from the
+      Ergast qualifying data.
+    columns:
+      - name: qualifyid
+        description: Unique identifier of the qualifying result.
+      - name: raceid
+        description: Identifier of the race.
+      - name: driverid
+        description: Identifier of the driver.
+      - name: constructorid
+        description: Identifier of the constructor.
+      - name: driver_number
+        description: Car number of the driver in the race.
+      - name: qualifying_position
+        description: Final qualifying position of the driver.
+      - name: q1
+        description: Best lap time in the Q1 session.
+      - name: q2
+        description: Best lap time in the Q2 session, if reached.
+      - name: q3
+        description: Best lap time in the Q3 session, if reached.
