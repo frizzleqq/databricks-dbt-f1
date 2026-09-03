@@ -3,3 +3,6 @@ dbt_packages/
 dbt_modules/
 logs/
 .venv/
+# Metric views are YAML-bodied .sql files (dbt-databricks metric_view
+# materialization) and cannot be parsed as SQL.
+src/models/gold/mv_result.sql
